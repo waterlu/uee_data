@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS `subject_ranking`;
+CREATE TABLE `subject_ranking` (
+  `subject_ranking_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `university_code` varchar(20) NOT NULL,
+  `subject_code` varchar(20) NOT NULL,
+  `province_code` varchar(20) NOT NULL,
+  `category` tinyint(4) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `max_score` smallint(255) NOT NULL,
+  `average_score` smallint(255) NOT NULL,
+  `delete_flag` tinyint(255) NOT NULL DEFAULT '0',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`subject_ranking_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
