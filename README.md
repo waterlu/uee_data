@@ -1,28 +1,22 @@
-# uee_data
+update college_ranking set province_code = 5 where province_name = '河北';
+update college_ranking set province_code = 6 where province_name = '河南';
+update college_ranking set province_code = 7 where province_name = '山东';
+update college_ranking set province_code = 8 where province_name = '山西';
+update college_ranking set province_code = 9 where province_name = '安徽';
+update college_ranking set province_code = 10 where province_name = '江西';
+update college_ranking set province_code = 13 where province_name = '湖北';
+update college_ranking set province_code = 14 where province_name = '湖南';
+update college_ranking set province_code = 15 where province_name = '广东';
+update college_ranking set province_code = 19 where province_name = '四川';
 
-SELECT province_code,year,category,count(*) FROM subject_ranking group by province_code,year,category;
-delete from subject_ranking where province_code='河南' and category = 1 and year = '2015';
+SELECT province_code, year, university_name, COUNT(average_score)
+FROM college_ranking
+WHERE delete_flag = 0 AND category = 2
+GROUP BY province_code, year, university_name
 
-http://localhost:8080/score/subject/2014/13/2
 
-1   北京
-2   天津
-5   河北
-6   河南
-7   山东
-8   山西
-9   安徽
-10  江西
-13  湖北
-14  湖南
-15  广东
-16  广西
-17  云南
-18  贵州
-19  四川
-20  陕西
-23  黑龙江
-24  吉林
-25  辽宁
-28  内蒙古
-31  甘肃
+        SELECT province_code, year, university_name, COUNT(average_score) AS c
+        FROM college_ranking
+        WHERE delete_flag = 0 AND category = 2
+        GROUP BY province_code, year, university_name
+        ORDER BY c DESC, province_code

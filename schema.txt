@@ -1,3 +1,20 @@
+DROP TABLE IF EXISTS `college_ranking`;
+CREATE TABLE `college_ranking` (
+  `college_ranking_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `university_code` varchar(20) DEFAULT NULL,
+  `university_name` varchar(20) DEFAULT NULL,
+  `province_code` varchar(20) DEFAULT NULL,
+  `province_name` varchar(20) DEFAULT NULL,
+  `category` tinyint(4) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `max_score` smallint(255) NOT NULL,
+  `average_score` smallint(255) NOT NULL,
+  `delete_flag` tinyint(255) NOT NULL DEFAULT '0',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`college_ranking_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `subject_ranking`;
 CREATE TABLE `subject_ranking` (
   `subject_ranking_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -13,3 +30,153 @@ CREATE TABLE `subject_ranking` (
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`subject_ranking_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : 192.168.75.157
+Source Server Version : 50719
+Source Host           : 192.168.75.157:3306
+Source Database       : uee
+
+Target Server Type    : MYSQL
+Target Server Version : 50719
+File Encoding         : 65001
+
+Date: 2017-10-06 17:46:41
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for university
+-- ----------------------------
+DROP TABLE IF EXISTS `university`;
+CREATE TABLE `university` (
+  `university_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `university_code` varchar(5) NOT NULL,
+  `university_name` varchar(20) NOT NULL,
+  `university_english_name` varchar(100) DEFAULT NULL,
+  `university_type` varchar(10) DEFAULT NULL,
+  `university_owner` varchar(10) DEFAULT NULL,
+  `university_category` tinyint(4) DEFAULT NULL,
+  `university_ranking` tinyint(4) DEFAULT NULL,
+  `delete_flag` tinyint(4) DEFAULT '0',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`university_id`),
+  UNIQUE KEY `uk_university_name` (`university_name`) USING BTREE,
+  UNIQUE KEY `uk_university_code` (`university_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of university
+-- ----------------------------
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10001', '北京大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10002', '中国人民大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10003', '清华大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10004', '北京交通大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10005', '北京工业大学', '工科', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10006', '北京航空航天大学', '工科', 'IT');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10007', '北京理工大学', '工科', 'IT');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10008', '北京科技大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10010', '北京化工大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10013', '北京邮电大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10019', '中国农业大学', '农业', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10022', '北京林业大学', '林业', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10023', '北京协和医学部', '医药', 'ORG');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10026', '北京中医药大学', '医药', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10027', '北京师范大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10030', '北京外国语大学', '语言', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10033', '中国传媒大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10034', '中央财经大学', '财经', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10036', '对外经济贸易大学', '财经', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10052', '中央民族大学', '民族', 'ORG');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10053', '中国政法大学', '政法', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10079', '华北电力大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10055', '南开大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10056', '天津大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10062', '天津医科大学', '医药', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10080', '河北工业大学', '工科', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10112', '太原理工大学', '工科', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10126', '内蒙古大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10140', '辽宁大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10141', '大连理工大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10145', '东北大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10151', '大连海事大学', '工科', 'ORG');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10183', '吉林大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10184', '延边大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10200', '东北师范大学', '师范', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10213', '哈尔滨工业大学', '工科', 'IT');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10217', '哈尔滨工程大学', '工科', 'IT');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10224', '东北农业大学', '农业', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10225', '东北林业大学', '林业', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10246', '复旦大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10247', '同济大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10248', '上海交通大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10251', '华东理工大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10255', '东华大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10269', '华东师范大学', '师范', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10271', '上海外国语大学', '语言', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10272', '上海财经大学', '财经', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10280', '上海大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10284', '南京大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10285', '苏州大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10286', '东南大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10287', '南京航空航天大学', '工科', 'IT');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10288', '南京理工大学', '工科', 'IT');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10294', '河海大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10295', '江南大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10307', '南京农业大学', '农业', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10316', '中国药科大学', '医药', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10319', '南京师范大学', '师范', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10335', '浙江大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10357', '安徽大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10358', '中国科学技术大学', '工科', 'ORG');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10359', '合肥工业大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10384', '厦门大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10386', '福州大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10403', '南昌大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10422', '山东大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10423', '中国海洋大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10459', '郑州大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10486', '武汉大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10487', '华中科技大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10497', '武汉理工大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10504', '华中农业大学', '农业', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10511', '华中师范大学', '师范', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10520', '中南财经政法大学', '财经', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10532', '湖南大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('11942', '中南大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10542', '湖南师范大学', '师范', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10558', '中山大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10559', '暨南大学', '综合', 'ORG');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10561', '华南理工大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10574', '华南师范大学', '师范', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10589', '海南大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10593', '广西大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10610', '四川大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10613', '西南交通大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10614', '电子科技大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10626', '四川农业大学', '农业', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10651', '西南财经大学', '财经', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10635', '西南大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10611', '重庆大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10657', '贵州大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10673', '云南大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10694', '西藏大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10697', '西北大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10698', '西安交通大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10699', '西北工业大学', '工科', 'IT');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10701', '西安电子科技大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10710', '长安大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10712', '西北农林科技大学', '农业', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10718', '陕西师范大学', '师范', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10730', '兰州大学', '综合', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10743', '青海大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10749', '宁夏大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10755', '新疆大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('10759', '石河子大学', '综合', 'GOV');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('11413', '中国矿业大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('11414', '中国石油大学', '工科', 'EDU');
+INSERT INTO `university`(`university_code`,`university_name`,`university_type`, `university_owner`) VALUES ('11415', '中国地质大学', '综合', 'EDU');

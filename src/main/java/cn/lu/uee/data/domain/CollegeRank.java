@@ -3,7 +3,7 @@ package cn.lu.uee.data.domain;
 /**
  * Created by lu on 2017/4/24.
  */
-public class SubjectRank {
+public class CollegeRank {
 
     /**
      *
@@ -13,19 +13,10 @@ public class SubjectRank {
     /**
      *
      */
-    private String subjectName;
-
-    /**
-     *
-     */
     private String provinceName;
 
 
-
-
     public String univCode;
-
-    public String subjCode;
 
     public String provCode;
 
@@ -45,14 +36,6 @@ public class SubjectRank {
         this.universityName = universityName;
     }
 
-    public String getSubjectName() {
-        return subjectName;
-    }
-
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
-    }
-
     public String getProvinceName() {
         return provinceName;
     }
@@ -68,14 +51,6 @@ public class SubjectRank {
 
     public void setUnivCode(String univCode) {
         this.univCode = univCode;
-    }
-
-    public String getSubjCode() {
-        return subjCode;
-    }
-
-    public void setSubjCode(String subjCode) {
-        this.subjCode = subjCode;
     }
 
     public String getProvCode() {

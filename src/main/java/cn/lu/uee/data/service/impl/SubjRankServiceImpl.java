@@ -16,7 +16,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lu on 2017/4/23.
@@ -75,6 +77,16 @@ public class SubjRankServiceImpl implements SubjRankService {
             e.printStackTrace();
             return count;
         }
+    }
+
+    @Override
+    public List<String> ranking(int category) {
+//        Map<String, UnivSubjRank> univMap = new HashMap<>();
+//        List<SubjectRank> subjectRankList = subjectScoreMapper.selectCategory(category);
+//        for (SubjectRank subjectRank : subjectRankList) {
+//
+//        }
+        return null;
     }
 
     private boolean parseTable(List<SubjectRank> subjDataList, String data) throws IOException

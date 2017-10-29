@@ -23,4 +23,11 @@ public interface SubjectRankingMapper {
 
     @Select("SELECT * FROM `subject_ranking`")
     List<SubjectRank> selectAll();
+
+    @Select("SELECT r.university_name as universityName, r.subject_name as subjectName, r.province_name as provinceName, " +
+            "r.`year`, r.max_score as maxScore, r.average_score as averageScore " +
+            "FROM subject_ranking r, university u " +
+            "WHERE r.university_code = u.university_code " +
+            "AND r.category = #{category} AND r.province_code >= 5 AND r.province_code <= 14")
+    List<SubjectRank> selectCategory(int category);
 }
